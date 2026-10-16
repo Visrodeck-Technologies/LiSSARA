@@ -115,57 +115,59 @@ Exports the reconstructed curves as vector paths. The geometry can be opened in 
 
 JSON is intended for accessing the underlying mathematical representation. SVG is intended for using the reconstructed vector artwork.
 
-## How LiSSARA Works
+## References & Research
 
-LiSSARA combines classical image processing with computational geometry. It does not need to understand the semantic meaning of an illustration to reconstruct its visible line structure.
+LiSSARA Core builds on established work in computer vision, curve geometry and vector graphics. The following references provide background for the techniques used in the project and related research.
 
-### Edge Detection
+### Edge Detection & Image Processing
 
-An image contains changes in brightness, colour and local texture. Edge detection identifies locations where image intensity changes significantly, helping reveal boundaries and line work.
+1. **Canny, J. (1986).** *A Computational Approach to Edge Detection.* IEEE Transactions on Pattern Analysis and Machine Intelligence, 8(6), 679–698.  
+   [Read the paper — DOI: 10.1109/TPAMI.1986.4767851](https://doi.org/10.1109/TPAMI.1986.4767851)
 
-LiSSARA uses edge extraction as a starting point for identifying the illustration's visible contours. The resulting edge map is a representation of image boundaries, not yet a mathematical drawing.
+   Foundational research on edge detection, including detection accuracy, edge localisation and reducing multiple responses to a single edge.
 
-Edge detection can produce fragmented lines, unwanted edges and closely spaced responses around thick strokes. These must be handled during subsequent processing.
+2. **OpenCV — Edge Detection Using OpenCV.**  
+   [Read the tutorial](https://opencv.org/edge-detection-using-opencv/)
 
-### Contour Tracing
+   A practical reference for Canny, Sobel and Laplacian edge-detection methods.
 
-Edge pixels are organised into ordered paths. Tracing attempts to follow connected line structures, separating independent contours rather than connecting unrelated image regions.
+### Curve Approximation & Mathematical Geometry
 
-Filtering and gap handling help remove short fragments and bridge selected discontinuities. Their effectiveness depends on the input image and processing parameters.
+3. **Pomax — A Primer on Bézier Curves.**  
+   [Read the interactive primer](https://pomax.github.io/bezierinfo/)
 
-### Cubic Bézier Fitting
+   A detailed reference covering Bézier curves, Bernstein polynomials, control points, derivatives, subdivision, curve fitting and geometric properties.
 
-The traced paths contain discrete points. LiSSARA approximates these paths using cubic Bézier curves.
+4. **Douglas, D. H., & Peucker, T. K. (1973).** *Algorithms for the Reduction of the Number of Points Required to Represent a Digitized Line or Its Caricature.* Cartographica, 10(2), 112–122.  
+   [Read the paper — DOI: 10.3138/FM57-6770-U75U-7727](https://doi.org/10.3138/FM57-6770-U75U-7727)
 
-A cubic Bézier segment is defined by four control points:
+   Foundational work on reducing the number of points needed to represent a line while retaining its overall shape. Relevant background for contour simplification.
 
-- \(P_0\): starting point.
-- \(P_1\): first control point, influencing the departure direction.
-- \(P_2\): second control point, influencing the arrival direction.
-- \(P_3\): ending point.
+5. **Encyclopedia of Mathematics — Bézier Curve.**  
+   [Read the mathematical reference](https://encyclopediaofmath.org/index.php?title=B%C3%A9zier_curve)
 
-Its parametric representation is:
+   A concise mathematical treatment of Bézier curves as parametric polynomials defined by control points.
 
-\[
-B(t)=(1-t)^3P_0+3(1-t)^2tP_1+
-3(1-t)t^2P_2+t^3P_3
-\]
+### Vector Graphics & Path Representation
 
-where:
+6. **W3C — Scalable Vector Graphics (SVG) 2: Paths.**  
+   [Read the specification](https://www.w3.org/TR/SVG/latest/paths.html)
 
-\[
-0\leq t\leq1
-\]
+   The specification for SVG path commands, including cubic Bézier geometry represented by the `C` command used for vector-path export.
 
-The x- and y-coordinates can each be expressed as cubic polynomials in \(t\). This is why a reconstructed path can be inspected as mathematical equations rather than merely as pixels.
+### Related Research: Anime Line-Art Extraction
 
-A contour may require many Bézier segments to follow its shape accurately. LiSSARA fits and joins segments in sequence while retaining separate paths for independent contours.
+7. **Xiang, X., Liu, D., Yang, X., Zhu, Y., Shen, X., & Allebach, J. P. (2021).** *Adversarial Open Domain Adaptation for Sketch-to-Photo Synthesis.*  
+   [Read the paper on arXiv](https://arxiv.org/abs/2104.05703)
 
-### Interactive Mathematical Plotting
+8. **Anime2Sketch — Sketch Extractor for Illustration, Anime Art and Manga.**  
+   [Research implementation and project documentation](https://github.com/Mukosame/Anime2Sketch)
 
-The fitted curves are displayed on a graph using their control points and mathematical geometry. The graph lets users inspect the result, select individual paths, navigate segments and examine the corresponding equations.
+   Related work on extracting sketch-like line art from illustrations. Anime2Sketch is an optional research direction for LiSSARA; its pretrained model is not part of the default classical reconstruction workflow.
 
-Changing the graph view does not change the underlying reconstruction. Curve visibility and display colours control presentation rather than the mathematical geometry itself.
+---
+
+*These resources are provided for technical background and further study. Their inclusion does not imply that LiSSARA Core implements every referenced method or reproduces the results of the cited research.*
 
 ## What to Expect
 
