@@ -1,0 +1,1 @@
+"""Lissara Core: Vectorization, geometry fitting, model inference, scene assembly, optimization, and export library."""

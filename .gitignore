@@ -1,0 +1,13 @@
+
+.venv/
+.opencode/
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.models/
+/weights/
+/checkpoints/
+outputs/generated/
+outputs/gui_runs/
+build/
+dist/

@@ -1,0 +1,22 @@
+Source dimensions: 1840x2991
+Runtime seconds: 5.033
+Canny parameters: low=50, high=150, aperture=3, blur_sigma=0.0
+Gap closing iterations: 0
+Tangent-aligned gap bridge tolerance: 1px
+Contour paths traced: 2614
+Accepted paths: 1423 (open=1386, closed=37)
+Accepted contour pixels: 94941
+Adaptive Bezier segments: 6030
+Filtering: min_length=4.0, frame_margin=2px
+Fitting: tolerance=1.5px, max_segments=24
+Source edge pixels: 95687
+Reconstruction edge pixels: 162008
+Line-map MAE: 0.019994
+Edge precision (2px tolerance): 0.947046
+Edge recall (2px tolerance): 0.943744
+Edge F1 (2px tolerance): 0.945392
+Mean distance rendered-to-source (px): 0.9974
+Mean distance source-to-rendered (px): 0.7514
+SVG paths use cubic C commands, stroke only, and an opaque white background.
+Path endpoints, segment continuity, closure, and control-point canvas bounds validated.
+Environment: Python 3.13.13, OpenCV 5.0.0, NumPy 2.5.4, Pillow 12.3.0, CairoSVG 2.9.1
