@@ -1,4 +1,4 @@
-"""Launch the LiSSARA Core interactive graph calculator."""
+#Launcher 
 from app.graph_calculator import main
 
 

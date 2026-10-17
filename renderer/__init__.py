@@ -33,6 +33,7 @@ Render an existing MathScene:
 >>> from renderer import render_scene_svg
 >>> svg = render_scene_svg(scene)  # reads the scene's Bézier segments
 """
+# before yall question me most of the comments are done via claude. 
 from __future__ import annotations
 
 from .graph import GraphConfig, GraphRenderer

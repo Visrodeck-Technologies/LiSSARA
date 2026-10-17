@@ -1,1 +1,1 @@
-"""Lissara test suite package."""
+# test pkg
